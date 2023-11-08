@@ -68,10 +68,25 @@ CASE
   ELSE 'abysmal'
   END AS 'worklife_friendly'
   FROM fortune_companies
-  WHERE industry = 'Telecommunications';
+  WHERE industry = 'Telecommunications'
+;
 
 # Which industires have an average revenue of at least $300 billion?
 SELECT industry, AVG(revenue) AS avg_revenue
 FROM fortune_companies
 GROUP BY industry
-HAVING avg_revenue >=300;
+HAVING avg_revenue >=300
+;
+
+# Which companies have at least 1000 employees *and* at least an average of 5 years of employee tenure?
+SELECT company_name
+FROM fortune_companies
+WHERE employees >=1000
+AND avg_employee_tenure >=5.0
+;
+
+# Which company in the Healthcare industry has the most revenue?
+SELECT company_name, max(revenue)
+FROM fortune_companies
+WHERE industry = 'Healthcare'
+;

@@ -61,3 +61,17 @@ VALUES
 # Analysis
 
 # Assign all companies in the Telecommunications industry as 'work life balance friendly', 'acceptable', or 'abysmal' based on PTO offered.
+SELECT company_name,
+CASE
+  WHEN paid_time_off_days >= 11 THEN 'work life balance friendly'
+  WHEN paid_time_off_days >= 8 THEN 'acceptable'
+  ELSE 'abysmal'
+  END AS 'worklife_friendly'
+  FROM fortune_companies
+  WHERE industry = 'Telecommunications';
+
+# Which industires have an average revenue of at least $300 billion?
+SELECT industry, AVG(revenue) AS avg_revenue
+FROM fortune_companies
+GROUP BY industry
+HAVING avg_revenue >=300;
